@@ -1,37 +1,6 @@
-{%load static%}
-<!DOCTYPE html>
-<html>
-
-<head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <link rel="icon" href="{% static 'images/fevicon/fevicon.png'%}" type="image/gif" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-
-  <title>HandTime</title>
-
-
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}" />
-
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-  <!-- font awesome style -->
-  <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet" />
-
-  <!-- Custom styles for this template -->
-  <link href="{% static 'css/style.css'%}" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="{% static 'css/responsive.css'%}" rel="stylesheet" />
-
-</head>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 
 <body>
 
@@ -296,19 +265,21 @@
 
 
   <!-- about section -->
-
   <section class="about_section layout_padding">
     <div class="container-fluid">
+      
       <div class="row">
         <div class="col-md-6">
           <div class="img_container">
+            {% for item in about %}
             <div class="img-box b1">
-              <img src="{% static 'images/a-1.jpg'%}" alt="">
+              <img src="{{item.img1.url }}" alt="">
             </div>
             <div class="img-box b2">
-              <img src="{% static 'images/a-2.jpg'%}" alt="">
+              <img src="{{item.img2.url }}" alt="">
             </div>
           </div>
+          {% endfor %}
         </div>
         <div class="col-md-6">
           <div class="detail-box">
@@ -323,11 +294,11 @@
             <a href="">
               Read More
             </a>
-          </div>
-        </div>
+          </div>       </div>
       </div>
     </div>
   </section>
+  
   <!-- end about section -->
 
 
@@ -340,21 +311,24 @@
           Top Sale Watches
         </h2>
       </div>
+      
       <div class="product_container">
+        {% for item in products %}  <!-- Bu yerda "products" o'zgaruvchisidan foydalaning -->
         <div class="box">
           <div class="box-content">
             <div class="img-box">
-              <img src="{% static 'images/w1.png'%}" alt="">
+              <img src="{{item.image.url }}" alt="">
             </div>
             <div class="detail-box">
               <div class="text">
                 <h6>
-                  Men's Watch
+                  {{item.name }}
                 </h6>
                 <h5>
-                  <span>$</span> 300
+                  <span>{{item.price }} $</span>
                 </h5>
               </div>
+    
               <div class="like">
                 <h6>
                   Like
@@ -364,9 +338,12 @@
                   <i class="fa fa-star" aria-hidden="true"></i>
                   <i class="fa fa-star" aria-hidden="true"></i>
                   <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidde
+                  n="true"></i>
                 </div>
+                
               </div>
+              
             </div>
           </div>
           <div class="btn-box">
@@ -375,74 +352,11 @@
             </a>
           </div>
         </div>
-        <div class="box">
-          <div class="box-content">
-            <div class="img-box">
-              <img src="{% static 'images/w2.png'%}" alt="">
-            </div>
-            <div class="detail-box">
-              <div class="text">
-                <h6>
-                  Men's Watch
-                </h6>
-                <h5>
-                  <span>$</span> 300
-                </h5>
-              </div>
-              <div class="like">
-                <h6>
-                  Like
-                </h6>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="btn-box">
-            <a href="">
-              Add To Cart
-            </a>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-content">
-            <div class="img-box">
-              <img src="{% static 'images/w3.png'%}" alt="">
-            </div>
-            <div class="detail-box">
-              <div class="text">
-                <h6>
-                  Men's Watch
-                </h6>
-                <h5>
-                  <span>$</span> 300
-                </h5>
-              </div>
-              <div class="like">
-                <h6>
-                  Like
-                </h6>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="btn-box">
-            <a href="">
-              Add To Cart
-            </a>
-          </div>
-        </div>
+        {% endfor %}
+    </div>
+    
+
+        
       </div>
     </div>
   </section>
@@ -452,275 +366,12 @@
 
   <!-- product section -->
 
-  <section class="product_section ">
-    <div class="container">
-      <div class="product_heading">
-        <h2>
-          Feature Watches
-        </h2>
-      </div>
-      <div class="product_container">
-        <div class="box">
-          <div class="box-content">
-            <div class="img-box">
-              <img src="{% static 'images/w4.png'%}" alt="">
-            </div>
-            <div class="detail-box">
-              <div class="text">
-                <h6>
-                  Men's Watch
-                </h6>
-                <h5>
-                  <span>$</span> 300
-                </h5>
-              </div>
-              <div class="like">
-                <h6>
-                  Like
-                </h6>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="btn-box">
-            <a href="">
-              Add To Cart
-            </a>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-content">
-            <div class="img-box">
-              <img src="{% static 'images/w5.png'%}" alt="">
-            </div>
-            <div class="detail-box">
-              <div class="text">
-                <h6>
-                  Men's Watch
-                </h6>
-                <h5>
-                  <span>$</span> 300
-                </h5>
-              </div>
-              <div class="like">
-                <h6>
-                  Like
-                </h6>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="btn-box">
-            <a href="">
-              Add To Cart
-            </a>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-content">
-            <div class="img-box">
-              <img src="{% static 'images/w6.png'%}" alt="">
-            </div>
-            <div class="detail-box">
-              <div class="text">
-                <h6>
-                  Men's Watch
-                </h6>
-                <h5>
-                  <span>$</span> 300
-                </h5>
-              </div>
-              <div class="like">
-                <h6>
-                  Like
-                </h6>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="btn-box">
-            <a href="">
-              Add To Cart
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
 
   <!-- end product section -->
 
-
-  <!-- product section -->
-
-  <section class="product_section ">
-    <div class="container">
-      <div class="product_heading">
-        <h2>
-          New Arrivals
-        </h2>
-      </div>
-      <div class="product_container">
-        <div class="box">
-          <div class="box-content">
-            <div class="img-box">
-              <img src="{% static 'images/w7.png'%}" alt="">
-            </div>
-            <div class="detail-box">
-              <div class="text">
-                <h6>
-                  Men's Watch
-                </h6>
-                <h5>
-                  <span>$</span> 300
-                </h5>
-              </div>
-              <div class="like">
-                <h6>
-                  Like
-                </h6>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="btn-box">
-            <a href="">
-              Add To Cart
-            </a>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-content">
-            <div class="img-box">
-              <img src="{% static 'images/w8.png'%}" alt="">
-            </div>
-            <div class="detail-box">
-              <div class="text">
-                <h6>
-                  Men's Watch
-                </h6>
-                <h5>
-                  <span>$</span> 300
-                </h5>
-              </div>
-              <div class="like">
-                <h6>
-                  Like
-                </h6>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="btn-box">
-            <a href="">
-              Add To Cart
-            </a>
-          </div>
-        </div>
-        <div class="box">
-          <div class="box-content">
-            <div class="img-box">
-              <img src="{% static 'images/w9.png'%}" alt="">
-            </div>
-            <div class="detail-box">
-              <div class="text">
-                <h6>
-                  Men's Watch
-                </h6>
-                <h5>
-                  <span>$</span> 300
-                </h5>
-              </div>
-              <div class="like">
-                <h6>
-                  Like
-                </h6>
-                <div class="star_container">
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="btn-box">
-            <a href="">
-              Add To Cart
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- end product section -->
-
-  <!-- contact section -->
-  <section class="contact_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Contact Us
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form_container">
-            <form action="">
-              <div>
-                <input type="text" placeholder="Your Name" />
-              </div>
-              <div>
-                <input type="text" placeholder="Phone Number" />
-              </div>
-              <div>
-                <input type="email" placeholder="Email" />
-              </div>
-              <div>
-                <input type="text" class="message-box" placeholder="Message" />
-              </div>
-              <div class="btn_box">
-                <button>
-                  SEND
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+  
         <div class="col-md-6 ">
           <div class="map_container">
             <div class="map">
@@ -735,51 +386,7 @@
 
 
   <!-- client section -->
-  <section class="client_section layout_padding-bottom">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Testimonial
-        </h2>
-      </div>
-    </div>
-    <div id="customCarousel2" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-10 mx-auto">
-                <div class="box">
-                  <div class="img-box">
-                    <img src="{% static 'images/client.jpg'%}" alt="">
-                  </div>
-                  <div class="detail-box">
-                    <div class="client_info">
-                      <div class="client_name">
-                        <h5>
-                          Morojink
-                        </h5>
-                        <h6>
-                          Customer
-                        </h6>
-                      </div>
-                      <i class="fa fa-quote-left" aria-hidden="true"></i>
-                    </div>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore
-                      et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum
-                      dolore eu fugia
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  
         <div class="carousel-item">
           <div class="container">
             <div class="row">
@@ -881,7 +488,7 @@
                 <img src="{% static 'images/location-white.png'%}" width="18px" alt="">
               </div>
               <p>
-                Address
+                Navoiy
               </p>
             </div>
             <div>
@@ -889,7 +496,7 @@
                 <img src="{% static 'images/telephone-white.png'%}" width="12px" alt="">
               </div>
               <p>
-                +01 1234567890
+                +998990113618
               </p>
             </div>
             <div>
@@ -897,7 +504,7 @@
                 <img src="{% static 'images/envelope-white.png'%}" width="18px" alt="">
               </div>
               <p>
-                demo@gmail.com
+                norbeknorov007@gmail.com
               </p>
             </div>
           </div>
@@ -972,24 +579,16 @@
             <h5>
               Newsletter
             </h5>
-            <form action="">
-              <input type="email" placeholder="Enter your email">
-              <button>
-                Subscribe
-              </button>
-            </form>
+
             <div class="social_box">
-              <a href="">
-                <img src="{% static 'images/fb.png'%}" alt="">
+              <a href="https://github.com/Norbek07">
+                <i class="fa-brands fa-github fa-2xl" style="color: #eff1f6;"></i>
               </a>
-              <a href="">
-                <img src="{% static 'images/twitter.png'%}" alt="">
+              <a href="https://www.instagram.com/norbek._off/">
+                <i class="fa-brands fa-instagram fa-2xl" style="color: #e3e7ed;"></i>
               </a>
-              <a href="">
-                <img src="{% static 'images/linkedin.png'%}" alt="">
-              </a>
-              <a href="">
-                <img src="{% static 'images/youtube.png'%}" alt="">
+              <a href="https://www.youtube.com/@Norbek007">
+                <i class="fa-brands fa-youtube fa-2xl" style="color: #e3e7ed;"></i>
               </a>
             </div>
           </div>
@@ -1000,31 +599,4 @@
 
   <!-- end info_section -->
 
-  <!-- footer section -->
-  <section class="footer_section">
-    <div class="container">
-      <p>
-        &copy; <span id="displayYear"></span> All Rights Reserved By
-        <a href="https://html.design/">Free Html Templates</a>
-      </p>
-    </div>
-  </section>
-  <!-- footer section -->
-
-  <!-- jQery -->
-  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js'%}"></script>
-  <!-- popper js -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script>
-  <!-- bootstrap js -->
-  <script type="text/javascript" src="{% static 'js/bootstrap.js'%}"></script>
-  <!-- custom js -->
-  <script type="text/javascript" src="{% static 'js/custom.js'%}"></script>
-  <!-- Google Map -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
-  </script>
-  <!-- End Google Map -->
-
-</body>
-
-</html>
+                    {% endblock content %}
